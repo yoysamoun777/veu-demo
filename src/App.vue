@@ -3,8 +3,8 @@
     <div class="container" style="margin-top: 60px; width: auto;">
       <div class="row">
           <input type="text" v-model="keysearch" class="form-control" placeholder="Search Country Name">
-      </div>
-
+     </div>
+       
       <div class="nostyle" style="margin:20px 0px;">
         <button class="btn" :class="sortDirection=='asc'?'btn-primary':'btn-secondary'" @click="sortBy('asc')">ASC</button>
         <button class="btn" :class="sortDirection=='desc'?'btn-primary':'btn-secondary'" @click="sortBy('desc')">DESC</button>
@@ -22,7 +22,7 @@
             <p v-if="c.nativeName && c.name.nativeName.zho">{{ c.name.nativeName.zho.official }}</p>
             <!-- <p v-for="(alt,i) in country.altSpellings" :key="i">{{ alt }}</p> -->
             <p>{{ c.idd.root }}<template v-if="c.idd.suffixes">{{ c.idd.suffixes[0] }}</template></p>
-            <a href="#" class="btn btn-primary">View Detail</a>
+           
           </div>
         </div>
         

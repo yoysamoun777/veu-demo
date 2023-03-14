@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 const ResAxios= axios.create({
     baseURL:"https://restcountries.com/v3.1",
     // timeout: 1000,

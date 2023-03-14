@@ -1,29 +1,17 @@
 <template>
 
     <div class="container" style="margin-top: 60px; width: auto;">
-
-      <!-- <div>
-          <h1>Hello</h1>
-         
-          <b-pagination v-model="currentPage" 
-          :per-page="perPage" 
-          :total-rows="totalRow">
-        </b-pagination>
-         
-        </div> -->
-        
       <div class="row">
           <input type="text" v-model="keysearch" class="form-control" placeholder="Search Country Name">
       </div>
-      <div class="row">
-       
-      
-        <div class="" style="margin:20px 0px;">
+
+      <div class="nostyle" style="margin:20px 0px;">
         <button class="btn" :class="sortDirection=='asc'?'btn-primary':'btn-secondary'" @click="sortBy('asc')">ASC</button>
         <button class="btn" :class="sortDirection=='desc'?'btn-primary':'btn-secondary'" @click="sortBy('desc')">DESC</button>
-        </div>
-        <div class="card col-md-3 col-sm-12" style="margin-bottom: 20px;" v-for="(c,i) in listCountries" :key="i">
-       
+      </div>
+      
+      <div class="row">        
+        <div class="card col-md-3 col-sm-12" style="margin-bottom: 20px;" v-for="(c,i) in listCountries" :key="i">       
           <img class="card-img-top" style="width:auto; height: 150px; padding-top: 25px; margin:0 auto" :src="c.flags.png" :alt="c.name.official">
           <div class="card-body">
             <h5 class="card-title" @click.prevent="show(i)" style="cursor: pointer;">{{ c.name.official }}</h5>
@@ -38,24 +26,20 @@
           </div>
         </div>
         
-        
-        
+        <b-pagination v-model="currentPage" :per-page="perPage" :total-rows="totalRow"></b-pagination>
       </div>
     </div>
-
-   
 
 </template>
 
 <script>
 import ResAxios from "./Service/ResAxios.js";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
   name: 'App',
   components: {
   },
+
   data(){
     return{
       countries:[],
@@ -63,9 +47,6 @@ export default {
       perPage:25,
       keysearch:"",
       sortDirection:"",
-      modalVisible:false,
-      totalRows:[],
-
     }
   },
   computed:{
@@ -84,13 +65,13 @@ export default {
           return c;
         }
       })
-      this.totalRows=search;
+      this.totalRow=search;
       //pagination
       return search.slice((this.currentPage-1)*this.perPage,this.currentPage*this.perPage) ;
     },
-    totalRow(){
-      return this.totalRows.length;
-    }
+    // totalRow(){
+    //   return this.totalRow();
+    // }
   },
   mounted(){
     this.getCountries();
@@ -108,10 +89,7 @@ export default {
     },
     show(key){
       console.log(this.listCountries[key]);
-      // this.$refs.modalDetails.show()
-
-      // this.modalVisible=true
-     
+      
     },
     sortBy(sortDirection){
         this.sortDirection =sortDirection;
@@ -126,8 +104,6 @@ export default {
 </script>
 
 <style>
-    
-
-    
+     
 
 </style>
